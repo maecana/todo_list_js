@@ -98,39 +98,24 @@ filterList = (e) => {
 }
 
 saveToLocalStorage = (item) => {
-    const localTodoList = localStorage.getItem("todos");
-    let todoList = [];
-
-    if (localTodoList != null) {
-        todoList = JSON.parse(localTodoList);
-    }
+    let todoList = checkLocalStorage();
     
     todoList.push(item);
     localStorage.setItem("todos", JSON.stringify(todoList));
 }
 
 deleteLocalItem = (item) => {
-    const localTodoList = localStorage.getItem("todos");
-    let todoList = [];
-
-    if (localTodoList != null) {
-        todoList = JSON.parse(localTodoList);
-        
-        const index = todoList.indexOf(item);
-        todoList.splice(index, 1);
-    }
+    let todoList = checkLocalStorage();
+    
+    const index = todoList.indexOf(item);
+    todoList.splice(index, 1);
 
     localStorage.setItem("todos", JSON.stringify(todoList));
 }
 
 
 setLocalItems = () => {
-    const localTodoList = localStorage.getItem("todos");
-    let list = [];
-
-    if (localTodoList != null) {
-        list = JSON.parse(localTodoList);
-    }
+    let list = checkLocalStorage();
 
     list.forEach((item) => {
         // create a div
@@ -157,6 +142,18 @@ setLocalItems = () => {
         // add to todo list
         todoList.appendChild(todoItem);
     });
+}
+
+
+checkLocalStorage = () => {
+    const localTodoList = localStorage.getItem("todos");
+    let list = [];
+
+    if (localTodoList != null) {
+        list = JSON.parse(localTodoList);
+    }
+
+    return list;
 }
 
 
