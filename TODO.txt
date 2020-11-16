@@ -1,0 +1,4 @@
+1. Add fontawesome
+2. Add edit
+3. Add rearrange
+4. Add archive
