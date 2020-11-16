@@ -124,7 +124,46 @@ deleteLocalItem = (item) => {
 }
 
 
+setLocalItems = () => {
+    const localTodoList = localStorage.getItem("todos");
+    let list = [];
+
+    if (localTodoList != null) {
+        list = JSON.parse(localTodoList);
+    }
+
+    list.forEach((item) => {
+        // create a div
+        const todoItem = document.createElement("div");
+        todoItem.classList.add("todo-item");
+
+        // create a li el
+        const liEl = document.createElement("li");
+        liEl.innerHTML = item;
+        todoItem.appendChild(liEl);
+
+        // create check button
+        const checkBtn = document.createElement("button");
+        checkBtn.innerText = "/";
+        checkBtn.classList.add("check-btn");
+        todoItem.appendChild(checkBtn);
+
+        // create a trash button
+        const trashBtn = document.createElement("button");
+        trashBtn.innerText = "X";
+        trashBtn.classList.add("trash-btn");
+        todoItem.appendChild(trashBtn);
+
+        // add to todo list
+        todoList.appendChild(todoItem);
+    });
+}
+
+
 // EVENT LISTENERS
+window.addEventListener("DOMContentLoaded", (e) => {
+    setLocalItems();
+});
 addBtn.addEventListener("click", createTodoEl);
 todoList.addEventListener("click", deleteCheck);
 filterEl.addEventListener("change", filterList);
