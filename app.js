@@ -51,10 +51,14 @@ deleteCheck = (e) => {
     if (item.classList[0] === "trash-btn") {
         // add fall effect
         todoItem.classList.add("fall");
+
         // remove after effect
         todoItem.addEventListener("transitionend", () => {
             todoItem.remove();
         });
+            
+        // remove from local storage
+        deleteLocalItem(todoItem.childNodes[0].innerText);
     }
     // check
     if (item.classList[0] === "check-btn") {
@@ -102,6 +106,20 @@ saveToLocalStorage = (item) => {
     }
     
     todoList.push(item);
+    localStorage.setItem("todos", JSON.stringify(todoList));
+}
+
+deleteLocalItem = (item) => {
+    const localTodoList = localStorage.getItem("todos");
+    let todoList = [];
+
+    if (localTodoList != null) {
+        todoList = JSON.parse(localTodoList);
+        
+        const index = todoList.indexOf(item);
+        todoList.splice(index, 1);
+    }
+
     localStorage.setItem("todos", JSON.stringify(todoList));
 }
 
