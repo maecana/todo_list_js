@@ -31,6 +31,9 @@ createTodoEl = (e) => {
 
         // add to todo list
         todoList.appendChild(todoItem);
+
+        // set local storage
+        saveToLocalStorage(inputEl.value);
         
         // empty input field and focus
         inputEl.value = "";
@@ -88,6 +91,18 @@ filterList = (e) => {
             });
             break;
     }
+}
+
+saveToLocalStorage = (item) => {
+    const localTodoList = localStorage.getItem("todos");
+    let todoList = [];
+
+    if (localTodoList != null) {
+        todoList = JSON.parse(localTodoList);
+    }
+    
+    todoList.push(item);
+    localStorage.setItem("todos", JSON.stringify(todoList));
 }
 
 
