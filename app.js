@@ -8,29 +8,8 @@ const filterEl = document.querySelector(".filter-select");
 // FUNCTIONS
 createTodoEl = (e) => {
     if (inputEl.value != "") {
-        // create a div
-        const todoItem = document.createElement("div");
-        todoItem.classList.add("todo-item");
-
-        // create a li el
-        const liEl = document.createElement("li");
-        liEl.innerHTML = inputEl.value;
-        todoItem.appendChild(liEl);
-
-        // create check button
-        const checkBtn = document.createElement("button");
-        checkBtn.innerText = "/";
-        checkBtn.classList.add("check-btn");
-        todoItem.appendChild(checkBtn);
-
-        // create a trash button
-        const trashBtn = document.createElement("button");
-        trashBtn.innerText = "X";
-        trashBtn.classList.add("trash-btn");
-        todoItem.appendChild(trashBtn);
-
-        // add to todo list
-        todoList.appendChild(todoItem);
+        // create a todo element
+        todoEl(inputEl.value);
 
         // set local storage
         saveToLocalStorage(inputEl.value);
@@ -118,29 +97,8 @@ setLocalItems = () => {
     let list = checkLocalStorage();
 
     list.forEach((item) => {
-        // create a div
-        const todoItem = document.createElement("div");
-        todoItem.classList.add("todo-item");
-
-        // create a li el
-        const liEl = document.createElement("li");
-        liEl.innerHTML = item;
-        todoItem.appendChild(liEl);
-
-        // create check button
-        const checkBtn = document.createElement("button");
-        checkBtn.innerText = "/";
-        checkBtn.classList.add("check-btn");
-        todoItem.appendChild(checkBtn);
-
-        // create a trash button
-        const trashBtn = document.createElement("button");
-        trashBtn.innerText = "X";
-        trashBtn.classList.add("trash-btn");
-        todoItem.appendChild(trashBtn);
-
-        // add to todo list
-        todoList.appendChild(todoItem);
+        // create a todo element
+        todoEl(item);
     });
 }
 
@@ -154,6 +112,32 @@ checkLocalStorage = () => {
     }
 
     return list;
+}
+
+todoEl = (item) => {
+    // create a div
+    const todoItem = document.createElement("div");
+    todoItem.classList.add("todo-item");
+
+    // create a li el
+    const liEl = document.createElement("li");
+    liEl.innerHTML = item;
+    todoItem.appendChild(liEl);
+
+    // create check button
+    const checkBtn = document.createElement("button");
+    checkBtn.innerText = "/";
+    checkBtn.classList.add("check-btn");
+    todoItem.appendChild(checkBtn);
+
+    // create a trash button
+    const trashBtn = document.createElement("button");
+    trashBtn.innerText = "X";
+    trashBtn.classList.add("trash-btn");
+    todoItem.appendChild(trashBtn);
+
+    // add to todo list
+    todoList.appendChild(todoItem);
 }
 
 
