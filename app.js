@@ -22,6 +22,7 @@ createTodoEl = (e) => {
     }
 }
 
+
 deleteCheck = (e) => {
     const item = e.target;
     let todoItem = item.parentElement;
@@ -39,6 +40,7 @@ deleteCheck = (e) => {
         // remove from local storage
         deleteLocalItem(todoItem.childNodes[0].innerText);
     }
+
     // check
     if (item.classList[0] === "check-btn") {
         // add complete style
@@ -46,15 +48,11 @@ deleteCheck = (e) => {
     }
 }
 
+
 filterList = (e) => {
     const todoItem = todoList.childNodes;
 
     switch (filterEl.value) {
-        case "all":
-            todoItem.forEach((item) => {
-                item.style.display = "flex";
-            });
-            break;
         case "completed":
             todoItem.forEach((item) => {
                 if (item.classList.contains("completed")) {
@@ -73,8 +71,13 @@ filterList = (e) => {
                 }
             });
             break;
+        default:
+            todoItem.forEach((item) => {
+                item.style.display = "flex";
+            });
     }
 }
+
 
 saveToLocalStorage = (item) => {
     let todoList = checkLocalStorage();
@@ -82,6 +85,7 @@ saveToLocalStorage = (item) => {
     todoList.push(item);
     localStorage.setItem("todos", JSON.stringify(todoList));
 }
+
 
 deleteLocalItem = (item) => {
     let todoList = checkLocalStorage();
@@ -113,6 +117,7 @@ checkLocalStorage = () => {
 
     return list;
 }
+
 
 todoEl = (item) => {
     // create a div
