@@ -61,15 +61,31 @@ deleteCheck = (e) => {
 }
 
 filterList = (e) => {
+    const todoItem = todoList.childNodes;
+
     switch (filterEl.value) {
         case "all":
-            console.log("all");
+            todoItem.forEach((item) => {
+                item.style.display = "flex";
+            });
             break;
         case "completed":
-            console.log("completed");
+            todoItem.forEach((item) => {
+                if (item.classList.contains("completed")) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
             break;
         case "pending":
-            console.log("pending");
+            todoItem.forEach((item) => {
+                if (!item.classList.contains("completed")) {
+                    item.style.display = "flex";
+                } else {
+                    item.style.display = "none";
+                }
+            });
             break;
     }
 }
