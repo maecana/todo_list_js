@@ -3,6 +3,11 @@ const inputEl = document.querySelector("#todo_input");
 const addBtn = document.querySelector(".add-btn");
 const todoList = document.querySelector(".todo-list");
 const filterEl = document.querySelector(".filter-select");
+const sideNav = document.querySelector(".side_nav");
+
+
+// VARIABLES
+const sideNavPath = "components/sidenav.html";
 
 
 // FUNCTIONS
@@ -145,6 +150,7 @@ todoEl = (item) => {
     todoList.appendChild(todoItem);
 }
 
+
 handleEnter = (e) => {
     if (e.keyCode === 13) {
         createTodoEl();
@@ -152,8 +158,20 @@ handleEnter = (e) => {
 }
 
 
+setSideNav = () => {
+    fetch(sideNavPath)
+    .then((data) => {
+        return data.text();
+    })
+    .then((html) => {
+        sideNav.innerHTML = html;
+    });
+}
+
+
 // EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", (e) => {
+    setSideNav();
     setLocalItems();
 });
 addBtn.addEventListener("click", createTodoEl);
