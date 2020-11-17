@@ -145,6 +145,12 @@ todoEl = (item) => {
     todoList.appendChild(todoItem);
 }
 
+handleEnter = (e) => {
+    if (e.keyCode === 13) {
+        createTodoEl();
+    }
+}
+
 
 // EVENT LISTENERS
 window.addEventListener("DOMContentLoaded", (e) => {
@@ -153,3 +159,4 @@ window.addEventListener("DOMContentLoaded", (e) => {
 addBtn.addEventListener("click", createTodoEl);
 todoList.addEventListener("click", deleteCheck);
 filterEl.addEventListener("change", filterList);
+inputEl.addEventListener("keypress", handleEnter);
